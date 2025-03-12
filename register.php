@@ -54,6 +54,17 @@
 		
 		<input type="submit" name="submit" value="Register">
 	
+		<?php
+		if (empty($_POST['email']) || (substr_count($_POST['email'], '@') !=1)){
+			$body = "Thank you, {$_POST['first_name']}, for registering with the J.D. Salinger fan club!'."; mail($_POST['email'], 'Registration Confirmation', $body, 'From: admin@example.com');
+			$_POST = [];
+		} else {
+			print'<p class="text--error">Please try again!</p>';
+		}
+	?>
+
+
+		<?php include('templates/footer.html');?>
 </form>
 </div>
 </body>
